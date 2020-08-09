@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -7,11 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(http: HttpClient) {
-    http.get('http://127.0.0.1:8000',
-      { headers: new HttpHeaders().append('token', localStorage.getItem('token')), params: { a: '12' } })
-      .toPromise()
-      .then(console.log)
-      .catch(console.error);
+  constructor(private authService: AuthService) {
+    // authService.get('auth')
   }
 }

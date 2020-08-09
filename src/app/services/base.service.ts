@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class BaseService {
-  constructor(private http: HttpClient) { }
+  constructor(protected http: HttpClient) { }
 
   url: string = null;
 
@@ -30,5 +30,12 @@ export class BaseService {
 
   updateItem(item): Observable<object> {
     return this.http.patch(this.url + item.id, { ...item }, { ...this.headers });
+  }
+
+  getReq(url, params = {}): Observable<object> {
+    return this.http.get(url, { ...this.headers, params });
+  }
+  postReq(url, body): Observable<object> {
+    return this.http.post(url, { ...body }, { ...this.headers });
   }
 }
