@@ -8,7 +8,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class AppComponent {
   constructor(http: HttpClient) {
-    http.get('http://127.0.0.1:8000', { headers: new HttpHeaders().append('token', 'sdfkhjsdf'), params: { a: '12' } })
+    http.get('http://127.0.0.1:8000',
+      { headers: new HttpHeaders().append('token', localStorage.getItem('token')), params: { a: '12' } })
       .toPromise()
       .then(console.log)
       .catch(console.error);
