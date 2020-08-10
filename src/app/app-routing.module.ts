@@ -1,27 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthComponent } from './components/auth/auth.component';
-import { ProjectsComponent } from './components/projects/projects.component';
+import { AuthComponent, ProjectsComponent } from './components';
 
 const routes: Routes = [
-  {
-    path: 'auth',
-    component: AuthComponent,
-  },
-  {
-    path: 'projects',
-    component: ProjectsComponent
-  }
+    {
+        component: AuthComponent,
+        path: 'auth',
+    },
+    {
+        component: ProjectsComponent,
+        path: 'projects',
+    },
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes)
-  ],
-  exports: [
-    RouterModule
-  ],
-  declarations: []
+    exports: [RouterModule],
+    imports: [RouterModule.forRoot(routes, {
+        onSameUrlNavigation: 'reload',
+    })],
 })
 export class AppRoutingModule {
 }

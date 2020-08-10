@@ -1,38 +1,64 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
-import { AppComponent } from './app.component';
-import { RouterModule } from '@angular/router';
-import { AppRoutingModule } from './app-routing.module';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { HttpClientModule } from '@angular/common/http';
-import { ProjectsComponent } from './components/projects/projects.component';
-import { AuthComponent } from './components/auth/auth.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule } from '@angular/material/button';
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+import {
+    MatButtonModule,
+    MatCheckboxModule,
+    MatDialogModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatSelectModule,
+    MatSnackBarModule,
+    MatTableModule,
+} from '@angular/material';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import {
+    AuthComponent,
+    FormAddComponent,
+    FormComponent,
+    FormDetailsDialogComponent,
+    ProjectsComponent,
+} from './components';
+import { BaseDetailsDialogComponent } from './core/load-items.service';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ProjectsComponent,
-    AuthComponent
-  ],
-  imports: [
-    BrowserModule,
-    RouterModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    declarations: [
+        AppComponent,
+        AuthComponent,
+        FormDetailsDialogComponent,
+        FormComponent,
+        FormAddComponent,
+        ProjectsComponent,
+        BaseDetailsDialogComponent,
+    ],
+    entryComponents: [BaseDetailsDialogComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatInputModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        HttpClientModule,
+        MatTableModule,
+        MatCheckboxModule,
+        MatSnackBarModule,
+        MatDialogModule,
+        MatSelectModule,
+        MatListModule,
+        MatIconModule,
+        MaterialFileInputModule,
+        ScrollingModule,
+    ],
+    providers: [],
 })
 export class AppModule {
 }

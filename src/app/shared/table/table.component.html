@@ -1,0 +1,13 @@
+<div *ngIf="items">
+    <div class="table-data-row">
+        <span *ngFor="let col of columns">{{col}}</span>
+    </div>
+    <div class="flex-column table-data">
+        <div *ngFor="let element of items; trackBy: trackByFn"
+             class="table-data-row"
+             [style]="{'grid-template-columns': 'repeat(' + columns.length + ', 1fr)'}">
+            <ng-template let-item
+            ></ng-template>
+        </div>
+    </div>
+</div>

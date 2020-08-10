@@ -1,19 +1,54 @@
-<form [formGroup]="authForm" class="auth-form">
-  <div>
-    <mat-form-field class="auth-form_field">
-      <mat-label>Логин</mat-label>
-      <input matInput formControlName="login" class="auth-form_field_input">
-    </mat-form-field>
-  </div>
+<div class="auth-form width100">
+    <h1 style="padding-bottom: 2rem;">Войти в систему</h1>
+    <form
+            [formGroup]="formGroup"
+            (ngSubmit)="submitAuth($event)"
+            class="flex-column width100"
+    >
+        <div class="width100 form-input">
+            <div
+                    class="form-input-label"
+                    style="padding-bottom: 1%; box-sizing: border-box;"
+            >
+                E-mail <br/>
+            </div>
+            <input
+                    placeholder="admin"
+                    formControlName="email"
+                    class="width100 form-input-element"
+                    required="required"
+            />
+        </div>
 
-  <div>
-    <mat-form-field class="auth-form_field">
-      <mat-label>Пароль</mat-label>
-      <input matInput type="password" formControlName="password" class="auth-form_field_input">
-    </mat-form-field>
-  </div>
+        <div class="width100 form-input">
+            <div
+                    class="form-input-label"
+                    style="padding-bottom: 1%; box-sizing: border-box;"
+            >
+                Пароль <br/>
+            </div>
+            <input
+                    formControlName="password"
+                    placeholder="********"
+                    type="password"
+                    class="width100 form-input-element"
+                    required="required"
+            />
+        </div>
 
-  <div>
-    <button mat-raised-button color="primary" (click)="login()">Войти</button>
-  </div>
-</form>
+        <div class="flex width100"
+             style="padding-bottom: 1rem;">
+            <input id="remember-checkbox"
+                   type="checkbox"
+                   class="form-checkbox"/>
+            <label class="width100"
+                   for="remember-checkbox">
+                <span style="padding-left: 1rem;">Запомнить меня</span>
+            </label>
+        </div>
+
+        <button class="form-button width100"
+                type="submit">Войти
+        </button>
+    </form>
+</div>

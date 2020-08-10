@@ -1,0 +1,146 @@
+<form
+        [formGroup]="form"
+        (ngSubmit)="submitAction($event)"
+        class="app-form"
+        [class.flex-column]="isFlexColumn"
+        [class.flex]="!isFlexColumn"
+>
+    <ng-container *ngFor="let field of formFields">
+        <div class="width100 form-input"
+             *ngIf="sampleField(field.type || 'text')">
+            <div class="form-input-label">{{ field.name }} <br/></div>
+            <input
+                    [type]="field.type || 'text'"
+                    [placeholder]="field.placeholder || field.name"
+                    [formControlName]="field.formControlName"
+                    class="width100 form-input-element"
+                    [required]="field.required"
+            />
+            <img
+                    src="../../../assets/images/date-icon.svg"
+                    alt=""
+                    class="form-input-date-icon"
+                    [ngStyle]="{ display: field.type === 'date' ? 'block' : 'none' }"
+            />
+        </div>
+
+        <div
+                class="flex width100"
+                style="padding-bottom: 1rem;"
+                *ngIf="isCheckbox(field.type)"
+        >
+            <input
+                    [id]="field.name + 'checkbox'"
+                    type="checkbox"
+                    class="form-checkbox"
+                    [formControlName]="field.formControlName"
+            />
+            <label
+                    class="width100 form-checkbox-label"
+                    [for]="field.name + 'checkbox'"
+            >
+                <span style="padding-left: 1rem;"> {{ field.name }} </span>
+            </label>
+        </div>
+
+        <div *ngIf="field.type === 'selectBox'"
+             class="width100 form-select-block">
+            <label class="width100 form-select-label">
+                <span class="form-select-label-text">{{ field.name }}</span>
+                <select
+                    #formSelect
+                    name=""
+                    class="width100 form-select"
+                    [formControlName]="field.formControlName"
+                    (change)="changeFunc(field, formSelect.value)"
+                >
+                    <option
+                            [value]="opt.id"
+                            *ngFor="let opt of field.data"
+                            class="form-select-option"
+                    >
+                        {{ opt.name }}
+                    </option>
+                </select>
+                <img
+                        src="../../../assets/images/select-icon.svg"
+                        alt=""
+                        class="form-select-icon"
+                />
+                <img src="../../../assets/images/close-icon.svg"
+                     alt="" class="form-select-delete-icon" (click)="formSelect.value = null; changeFunc(field, formSelect.value)">
+            </label>
+        </div>
+
+        <div
+                class="width100 form-input-file"
+                (click)="inputFile.click()"
+                *ngIf="field.type === 'file'"
+        >
+            <div *ngIf="!inputFile.value" class="flex-column">
+                <img src="../../../assets/images/file-download-icon.svg"
+                     alt="">
+                <span>
+              Перетащите сюда файл или загрузите с компьютера
+            </span>
+            </div>
+            <div *ngIf="inputFile.value">
+                {{inputFile.value}}
+            </div>
+            <label class="form-input-file-label">
+                <input (change)="fileChange(inputFile.files, field.formControlName)"
+                       #inputFile
+                       type="file"
+                       class="width100 form-input-file-element"
+                       hidden
+                />
+                <input type="file"
+                       hidden
+                       [formControlName]="field.formControlName"
+                />
+            </label>
+        </div>
+
+        <div
+                *ngIf="field.type === 'formGroup'"
+                [formGroupName]="field.formGroupName"
+                class="flex-column base-form-field"
+        >
+            {{ field.name }}
+            <ng-container *ngFor="let field of field.fields">
+                <div
+                        class="width100 form-input"
+                        *ngIf="sampleField(field.type || 'text')"
+                >
+                    <div class="form-input-label">{{ field.name }} <br/></div>
+                    <input
+                            [type]="field.type || 'text'"
+                            [placeholder]="field.placeholder || field.name"
+                            [formControlName]="field.formControlName"
+                            class="width100 form-input-element"
+                            required="required"
+                    />
+                </div>
+
+                <div
+                        class="flex width100"
+                        style="padding-bottom: 1rem;"
+                        *ngIf="isCheckbox(field.type)"
+                >
+                    <input
+                            [id]="field.name + ' checkbox'"
+                            type="checkbox"
+                            class="form-checkbox"
+                            [formControlName]="field.formControlName"
+                    />
+                    <label class="width100"
+                           [for]="field.name + 'checkbox'">
+                        <span style="padding-left: 1rem;"> {{ field.name }} </span>
+                    </label>
+                </div>
+            </ng-container>
+        </div>
+    </ng-container>
+
+    <ng-content></ng-content>
+</form>

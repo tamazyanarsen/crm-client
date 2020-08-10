@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { BaseService } from './base.service';
-import { HttpClient } from '@angular/common/http';
+import { BaseService } from '../core/BaseService';
+import { RequestService } from './request.service';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
-export class ProjectService extends BaseService {
+export class ProjectService extends BaseService<any> {
 
-  url = 'projects/';
+    public url = 'projects/';
 
-  constructor(http: HttpClient) {
-    super(http);
-  }
+    constructor(requestService: RequestService) {
+        super(requestService);
+    }
 }

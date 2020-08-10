@@ -1,10 +1,40 @@
-<div style="display: flex;">
-  <div style="display: flex; flex-direction: column; flex: 20%;">
-    <div class="menu-item" *ngFor="let menu of menuItems" [routerLink]="menu.link">
-      {{menu.name}}
+<div class="main-content height100"
+     [ngStyle]="{'display': isAuth ? 'grid' : 'none'}">
+    <div class="main-menu flex-column height100"
+         *ngIf="isAuth">
+        <div class="flex-column main-menu-block width100">
+            <button
+                    class="flex menu-button"
+                    [ngClass]="{'selected-menu': selectedMenu && menu.url === selectedMenu.url}"
+                    *ngFor="let menu of menuItems; trackBy: menuTrackFn"
+                    [routerLink]="menu.url"
+                    (click)="selectedMenu=menu"
+            >
+                <span class="menu-button-name"
+                      [ngClass]="{'selected-menu-name': selectedMenu && menu.url === selectedMenu.url}"> {{ menu.name }} </span>
+            </button>
+        </div>
+        <div class="logout-block">
+            <div class="flex-column main-menu-block width100">
+                <button class="flex menu-button"
+                        (click)="logout()">
+                    <span class="menu-button-name"> Выйти </span>
+                </button>
+            </div>
+        </div>
     </div>
-  </div>
-  <div style="flex: 80%;">
-    <router-outlet></router-outlet>
-  </div>
+    <div class="height100 content">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+
+<div class="main-content-no-auth height100"
+     *ngIf="!isAuth">
+    <div class="flex-column">
+        <div class="flex auth-page">
+            <div class="auth-form-component width100">
+                <app-auth-form></app-auth-form>
+            </div>
+        </div>
+    </div>
 </div>

@@ -1,0 +1,112 @@
+.main-content {
+    //padding: 2%;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    box-sizing: border-box;
+
+    .content {
+        background: #F8FAFC;
+        //background: #F2F9FF;
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+}
+
+.main-content-no-auth {
+    padding: 2%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.auth-page {
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 5rem 5rem;
+}
+
+.auth-form-component {
+    flex: 40%;
+    padding: 0 3rem;
+}
+
+.auth-image {
+    flex: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-menu {
+    padding-left: 2rem;
+    padding-top: 2rem;
+    align-items: flex-start;
+    position: relative;
+    height: 95vh;
+
+    .main-menu-block {
+        align-items: flex-start;
+        padding: 5rem 2rem 0 0;
+
+        .menu-button:focus {
+            border: none;
+            outline: none;
+        }
+
+        .menu-button {
+            font-size: 1.5rem;
+            border: none;
+            background: none;
+            padding: 1rem;
+            width: 100%;
+            margin-bottom: 2rem;
+            color: #b9c0c7;
+            border-radius: 6px;
+
+            .menu-button-icon {
+                flex: 20%;
+                padding-right: 1rem;
+                padding-top: 2rem;
+
+                background: #d7dadd;
+                width: 10%;
+                height: 2vh;
+
+                //svg path {
+                //    fill: green;
+                //}
+            }
+
+            .menu-button-name {
+                flex: 80%;
+                //text-align: left;
+                display: grid;
+                text-align: center;
+            }
+        }
+
+        .selected-menu {
+            background: #39b8ff !important;
+            color: white;
+
+            .selected-menu-icon {
+                background: white;
+            }
+
+            .selected-menu-name {
+                border-right: 3px solid #99edff;
+            }
+        }
+    }
+}
+
+.logout-block {
+    position: absolute;
+    bottom: 1rem;
+    width: 100%;
+    left: 2rem;
+
+    .menu-button-icon {
+        //-webkit-mask: url("../assets/images/logout-icon.svg") no-repeat center;
+    }
+}
