@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from './services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +8,21 @@ import { AuthService } from './services/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private authService: AuthService) {
-    // authService.get('auth')
+  menuItems: { name: string, link: string }[] = [];
+
+  constructor(private authService: AuthService, router: Router) {
+    if (!!authService.getUserToken()) {
+      authService.isLoggedIn()
+        .then(console.log)
+        .catch(console.error);
+    } else {
+      router.navigate(['/auth']).then().catch();
+    }
+    this.menuItems.push(...[
+      {
+        name: 'Проекты',
+        link: '/projects'
+      }
+    ]);
   }
 }

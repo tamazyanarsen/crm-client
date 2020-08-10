@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +16,15 @@ export class AuthService extends BaseService {
     return localStorage.getItem('token');
   }
 
-  isLoggedIn(): Observable<object> {
-    return this.getReq(this.url + 'isAuth', this.getUserToken());
+  setUserToken(token: string): void {
+    localStorage.setItem('token', token);
+  }
+
+  isLoggedIn(): Promise<object> {
+    return this.getReq(this.url + 'isAuth', { token: this.getUserToken() });
+  }
+
+  login(item): Promise<object> {
+    return this.postReq(this.url + 'login', { ...item });
   }
 }
