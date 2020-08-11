@@ -1,9 +1,3 @@
-<div class="flex width100"
-     style="justify-content: flex-end">
-    <img (click)="onCancelClick()"
-         src="../../../assets/images/close-icon.svg"
-         alt="">
-</div>
 <div class="flex width100">
     <h2>{{dialogTitle}}</h2>
 </div>
@@ -14,13 +8,15 @@
               [formFields]="formFields"
               [isFlexColumn]="true"></app-form>
 </div>
-<div class="flex width100">
-    <button class="form-button form-button-submit popup-form-button"
-            [mat-dialog-close]="form.value">
-        <span class="popup-form-button-text form-button-submit-text">{{okButtonText}}</span>
-    </button>
-    <button class="form-button form-button-cancel popup-form-button"
+<div class="flex width100" style="align-items: center; justify-content: flex-end;">
+    <button mat-raised-button color="accent"
+            class="popup-form-button"
             (click)="onCancelClick()">
         <span class="popup-form-button-text form-button-cancel-text">Отмена</span>
+    </button>
+    <button mat-raised-button color="primary"
+            class="popup-form-button"
+            [mat-dialog-close]="form.value">
+        <span class="popup-form-button-text form-button-submit-text">{{okButtonText}}</span>
     </button>
 </div>

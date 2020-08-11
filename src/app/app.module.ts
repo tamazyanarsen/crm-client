@@ -2,17 +2,12 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {
-    MatButtonModule,
-    MatCheckboxModule,
-    MatDialogModule,
-    MatIconModule,
-    MatInputModule,
-    MatListModule,
-    MatSelectModule,
-    MatSnackBarModule,
-    MatTableModule,
-} from '@angular/material';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatSnackBarModule, } from '@angular/material/snack-bar';
+import { MatTableModule, } from '@angular/material/table';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
@@ -26,6 +21,11 @@ import {
     ProjectsComponent,
 } from './components';
 import { BaseDetailsDialogComponent } from './core/load-items.service';
+import { ModalComponent } from './shared/modal/modal.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { CommonModule } from "@angular/common";
 
 @NgModule({
     bootstrap: [AppComponent],
@@ -37,9 +37,11 @@ import { BaseDetailsDialogComponent } from './core/load-items.service';
         FormAddComponent,
         ProjectsComponent,
         BaseDetailsDialogComponent,
+        ModalComponent,
     ],
     entryComponents: [BaseDetailsDialogComponent],
     imports: [
+        CommonModule,
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
@@ -57,6 +59,9 @@ import { BaseDetailsDialogComponent } from './core/load-items.service';
         MatIconModule,
         MaterialFileInputModule,
         ScrollingModule,
+        MatButtonModule,
+        MatInputModule,
+        MatSelectModule,
     ],
     providers: [],
 })

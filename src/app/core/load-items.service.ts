@@ -1,7 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import * as ld from 'lodash';
 import { FormField } from '../models';
@@ -126,7 +127,7 @@ export class LoadItems {
 
     public setForm(item) {
         this.detailsForm = this.formBuilder.group({
-            ...{},
+            ...item,
         });
         this.detailsFormFields = this.formFields;
     }

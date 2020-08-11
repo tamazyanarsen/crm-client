@@ -1,0 +1,16 @@
+.modal {
+    position: fixed;
+    top: 10rem;
+    left: 25rem;
+    box-shadow: 0 0 1rem;
+    min-height: 40vh;
+    min-width: 50%;
+    background: white;
+    display: grid;
+    grid-template-rows: 20% 1fr 20%;
+    padding: 1rem;
+}
+
+.modal-action-button {
+    margin: 0.5rem;
+}

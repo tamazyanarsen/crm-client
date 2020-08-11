@@ -1,0 +1,21 @@
+<div class="modal"
+     *ngIf="visible">
+    <h2>{{title}}</h2>
+    <ng-content></ng-content>
+    <div style="display: flex; width: 100%; align-items: center; justify-content: flex-end;">
+        <div>
+            <button mat-raised-button
+                    color="accent"
+                    class="modal-action-button"
+                    (click)="actionOnCancelClick()">Отмена
+            </button>
+        </div>
+        <div>
+            <button mat-raised-button
+                    color="primary"
+                    class="modal-action-button"
+                    (click)="doneAction()">Ок
+            </button>
+        </div>
+    </div>
+</div>
