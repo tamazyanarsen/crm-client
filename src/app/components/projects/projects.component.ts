@@ -10,40 +10,46 @@ import { ProjectService } from '../../services/project.service';
 import { RequestService } from '../../services/request.service';
 
 @Component({
-    styleUrls: ['./projects.component.css'],
-    templateUrl: './projects.component.html',
+  styleUrls: ['./projects.component.css'],
+  templateUrl: './projects.component.html',
 })
 export class ProjectsComponent extends LoadItems implements OnInit {
 
-    public url = 'projects';
+  public url = 'projects';
 
-    addVisible = false;
+  addVisible = false;
 
-    constructor(router: Router, requestService: RequestService, dialog: MatDialog,
-                snackBar: MatSnackBar, formBuilder: FormBuilder, authService: AuthService, private projectService: ProjectService) {
-        super(router, requestService, dialog, snackBar, formBuilder, authService);
-        this.form = formBuilder.group({
-            ...new Project(),
-        });
-        this.formFields = [
-            { name: 'Имя проекта', formControlName: 'name' },
-            { name: 'Дата начала мероприятия', formControlName: 'startDate' },
-            { name: 'Дата окончания мероприятия', formControlName: 'endDate' },
-            { name: 'Количество участников', formControlName: 'participantsCount' },
-            { name: 'Место проведения', formControlName: 'location' },
-        ];
-        this.serviceInstance = projectService;
+  constructor(router: Router, requestService: RequestService, dialog: MatDialog,
+              snackBar: MatSnackBar, formBuilder: FormBuilder, authService: AuthService, private projectService: ProjectService) {
+    super(router, requestService, dialog, snackBar, formBuilder, authService);
+    this.form = formBuilder.group({
+      ...new Project(),
+    });
+    this.formFields = [
+      { name: 'Имя проекта', formControlName: 'name' },
+      { name: 'Дата начала мероприятия', formControlName: 'startDate', type: 'date' },
+      { name: 'Дата окончания мероприятия', formControlName: 'endDate', type: 'date' },
+      { name: 'Количество участников', formControlName: 'participantsCount' },
+      { name: 'Место проведения', formControlName: 'location' },
+    ];
+    this.serviceInstance = projectService;
+  }
+
+  displayedColumns = ['name', 'startDate', 'endDate'];
+
+  public ngOnInit(): void {
+    this.loadData();
+  }
+
+  getColumns(obj) {
+    return Object.keys(obj).filter(e => !['id', 'links'].includes(e));
+  }
+
+  openDetail(item) {
+    if (!item) {
+      item = new Project();
     }
-
-    public ngOnInit(): void {
-        this.loadData();
-    }
-
-    openDetail(item) {
-        if (!item) {
-            item = new Project();
-        }
-        super.openDetail(item);
-    }
+    super.openDetail(item);
+  }
 
 }

@@ -1,6 +1,8 @@
 <div>
-    <button mat-raised-button
-            color="primary"
-            (click)="openDetail(null)">Добавить
-    </button>
+  <button mat-raised-button
+          color="primary"
+          (click)="openDetail(null)">Добавить
+  </button>
+
+  <app-table *ngIf="items && items.length" [items]="items" [columns]="getColumns(items[0])"></app-table>
 </div>

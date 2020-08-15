@@ -11,12 +11,11 @@ export class TableComponent implements OnInit {
     }
 
     @Input() items: any[];
-    @Input() columns: string[];
+    @Input() columns: string[] = Object.keys(this.items && this.items.length ? this.items[0] : []);
 
     @ContentChild(TemplateRef) itemTemplate: TemplateRef<ElementRef>;
     @Input() trackByFn = v => v.id;
 
     ngOnInit(): void {
     }
-
 }

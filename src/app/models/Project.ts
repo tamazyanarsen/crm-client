@@ -12,8 +12,8 @@ export class Project {
     constructor() {
         this.name = '';
         this.links = '';
-        this.startDate = mm(new Date()).format('DD.MM.YYYY');
-        this.endDate = mm(new Date()).format('DD.MM.YYYY');
+        this.startDate = mm(new Date()).format('YYYY-MM-DD');
+        this.endDate = mm(new Date()).format('YYYY-MM-DD');
         this.participantsCount = 0;
         this.location = '';
     }

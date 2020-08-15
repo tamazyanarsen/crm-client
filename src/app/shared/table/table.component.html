@@ -1,13 +1,18 @@
 <div *ngIf="items">
-    <div class="table-data-row">
-        <span *ngFor="let col of columns">{{col}}</span>
+  <div class="table-data-row"
+       [ngStyle]="{'grid-template-columns': 'repeat(' + columns.length + ', 1fr)'}">
+    <span *ngFor="let col of columns">{{col | columnName}}</span>
+  </div>
+  <div class="flex-column table-data">
+    <div *ngFor="let element of items; trackBy: trackByFn"
+         class="table-data-row"
+         [ngStyle]="{'grid-template-columns': 'repeat(' + (columns.length + 1) + ', 1fr)'}">
+      <div *ngFor="let key of columns">
+        {{element[key]}}
+      </div>
+      <div>
+        <button mat-raised-button color="primary" [routerLink]="[element.id]">Подробнее</button>
+      </div>
     </div>
-    <div class="flex-column table-data">
-        <div *ngFor="let element of items; trackBy: trackByFn"
-             class="table-data-row"
-             [style]="{'grid-template-columns': 'repeat(' + columns.length + ', 1fr)'}">
-            <ng-template let-item
-            ></ng-template>
-        </div>
-    </div>
+  </div>
 </div>
